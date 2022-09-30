@@ -1,9 +1,12 @@
 // 引入外部套件
 const TelegramBot = require('node-telegram-bot-api');
+const port = 443;
+const host = '0.0.0.0';  // probably this change is not required
+const externalUrl = '架設bot server的heorku 網址';
 const token = '你自己機器人的Token'; //TODO:請更改
-const bot = new TelegramBot(token, { polling: true });
-
-//使用Long Polling的方式與Telegram伺服器建立連線
+const bot = new TelegramBot(process.env.TOKEN, { webHook: { port : port, host : host } });
+    
+bot.setWebHook(externalUrl + ':443/bot' + token);
 
 console.log('bot server started...');
 
